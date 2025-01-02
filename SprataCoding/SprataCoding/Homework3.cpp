@@ -24,14 +24,19 @@ public:
 			currentCapacity = newCapacity;
 		}
 	}
-	SimpleVector(int capacity = 10) : currentCapacity(capacity) {
+	SimpleVector() : data(nullptr), currentSize(0), currentCapacity(10)
+	{
+		data = new T[currentCapacity];
+	}
+	
+	SimpleVector(int capacity) : currentSize(0), currentCapacity(capacity) {
 		data = new T[currentCapacity];
 	}
 
 	SimpleVector(const SimpleVector& other) {
 		currentSize = other.currentSize;
 		currentCapacity = other.currentCapacity;
-		data = new T[currenctCapacity];
+		data = new T[currentCapacity];
 		for (int i = 0; i < currentSize; i++)
 		{
 			data[i] = other.data[i];
@@ -45,7 +50,7 @@ public:
 		{
 			resize(currentCapacity + 5);
 		}
-		data[currentSize] = t;
+		data[currentSize++] = t;
 	}
 
 	void pop_back()
@@ -68,6 +73,6 @@ public:
 
 	void sortData()
 	{
-		sort(data, data+this->size());
+		sort(data, data + this->size());
 	}
 };
